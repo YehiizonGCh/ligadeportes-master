@@ -163,9 +163,9 @@ class JugadorController extends Controller
      */
     public function show(Jugador $jugador)
     {
-        //$jugador=jugador::find($jugador->id);
+        // $Jugador=$jugador->id;
         $equipos = Equipo::all();
-        return view('inscripciones.jugadores.show', compact('jugador', 'equipos'));
+        return view('inscripciones.jugadores.show', compact('jugador', 'equipos','Jugador'));
 
         
 

@@ -13,10 +13,7 @@ use App\Http\Controllers\EstadisticaPartidoController;
 use App\Http\Controllers\JugadorEncuentroController;
 use App\Http\Controllers\JugadorCambioController;
 use App\Http\Controllers\EstadioController;
-use App\Http\Controllers\NotificacionController;
-use App\Notifications\jugadorinscrito;
-use Illuminate\Support\Facades\Notification;
-use App\Models\User;
+
 
 
 

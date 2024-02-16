@@ -19,7 +19,7 @@
     </div>
 @stop
 @section('content')
-    <div class="section-body"   >
+    <div class="section-body">
         <div class="row justify-content-center">
             <div class="col-lg 8">
                 <div class="card">
