@@ -58,10 +58,10 @@ class JugadorController extends Controller
     
     public function store(Request $request)
     {
-        foreach (['barrett@example.com'] as $recipient){
-            Mail::to($recipient)->send(new jugadornuevo());
-        }
-        $this->validate($request, [
+        // foreach (['barrett@example.com'] as $recipient){
+        //     Mail::to($recipient)->send(new jugadornuevo());
+        // }
+        $msg= $this->validate($request, [
             'apellido_materno' => 'required|max:50|min:3',
             'apellido_paterno' => 'required|max:50|min:3',
             'nombres' => 'required|max:50|min:3',
@@ -88,6 +88,8 @@ class JugadorController extends Controller
             
 
         ]);
+
+        Mail::to('barrett@example.com')->send(new jugadornuevo($msg));
 
         $fechaNacimiento = new \DateTime($request->input('fecha_nacimiento'));
         $hoy = new \DateTime();
