@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Address;
-
+use Illuminate\Mail\Attachment;
 class jugadornuevo extends Mailable
 {
     use Queueable, SerializesModels;
@@ -18,6 +18,7 @@ class jugadornuevo extends Mailable
      * Create a new message instance.
      */
     public $msg;
+    protected $pdf;
     public function __construct($msg)
     {
         $this->msg = $msg;
@@ -40,10 +41,17 @@ class jugadornuevo extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mails.jugadornuevo',
+            view: 'mails.jugadornuevo'
         );
     }
-
+    /*public function build()
+    {
+        return $this->view('pdf.jugador_nuevo')
+                    ->attachData($this->pdf, 'Jugador_Nuevo.pdf', [
+                        'mime' => 'application/pdf',
+                    ]);
+    }
+*/
     /**
      * Get the attachments for the message.
      *
@@ -51,6 +59,10 @@ class jugadornuevo extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        return [
+            /*Attachment::fromPath(storage_path('app/public/jugadores/documentos/', $this->msg->docs))
+                ->as('autorizacion.pdf')
+                ->withMime('application/pdf'),*/
+        ];
     }
 }

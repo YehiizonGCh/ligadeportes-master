@@ -121,6 +121,7 @@ Route::get('/generar-pdf-entrenadores', [EntrenadorController::class, 'generarIn
 Route::get('/generar-pdf-ligas', [LigaController::class, 'generarInformePDF'])->name('generar.pdf.ligas');
 Route::get('/generar-pdf-torneos', [TorneoController::class, 'generarInformePDF'])->name('generar.pdf.torneos');
 Route::get('/generar-pdf-estadios', [EstadioController::class, 'generarInformePDF'])->name('generar.pdf.estadios');
+Route::get('/generar-pdfnuevo_jugador', [JugadorController::class, 'PDFnuevo'])->name('generar.pdf.nuevojugador');
 
 
 

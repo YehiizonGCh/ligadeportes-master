@@ -11,8 +11,10 @@ use Illuminate\Support\Facades\Storage;
 use App\Mail\jugadornuevo;
 use Illuminate\Support\Facades\Mail;
 use PDF;
+use Dompdf\Dompdf;
 class JugadorController extends Controller
 {
+    public $msg;
     function __construct()
     {
         $this->middleware('permission:ver-jugador|crear-jugador|editar-jugador|borrar-jugador')->only('index');
@@ -58,9 +60,6 @@ class JugadorController extends Controller
     
     public function store(Request $request)
     {
-        // foreach (['barrett@example.com'] as $recipient){
-        //     Mail::to($recipient)->send(new jugadornuevo());
-        // }
         $msg= $this->validate($request, [
             'apellido_materno' => 'required|max:50|min:3',
             'apellido_paterno' => 'required|max:50|min:3',
@@ -88,8 +87,8 @@ class JugadorController extends Controller
             
 
         ]);
-
         Mail::to('barrett@example.com')->send(new jugadornuevo($msg));
+        
 
         $fechaNacimiento = new \DateTime($request->input('fecha_nacimiento'));
         $hoy = new \DateTime();
@@ -118,7 +117,6 @@ class JugadorController extends Controller
             $imagenes=$request->file('foto')->store('public/jugadores/foto');
             $url=Storage::url($imagenes);
             $jugador->foto=$url;            
-
         }
         
         $jugador->apellido_paterno = $request->input('apellido_paterno');
@@ -155,23 +153,21 @@ class JugadorController extends Controller
         $jugador->save();
     
         return redirect()->route('jugadores.index')->with('create', 'El jugador se creó con éxito');
+        $this->PDFnuevo($msg);
     }
     
-
+    
     
     /**
      * Display the specified resource.
      *
      */
-    public function show(Jugador $jugador)
+    public function show(Jugador $jugador,$id)
     {
-        // $Jugador=$jugador->id;
+        $jugador = Jugador::with('equipos')->findOrfail($id);
         $equipos = Equipo::all();
-        return view('inscripciones.jugadores.show', compact('jugador', 'equipos','Jugador'));
 
-        
-
-
+        return view('inscripciones.jugadores.show', compact('jugador'));
     }
 
     /**
@@ -181,8 +177,6 @@ class JugadorController extends Controller
      */
     public function edit($id)
     {
-        //
-        // $jugador=Jugador::find($jugador->id);
         $jugador = Jugador::with('equipos')->findOrfail($id);
         $equipos = Equipo::all();
         return view('inscripciones.jugadores.edit', compact('jugador', 'equipos'));
@@ -351,5 +345,14 @@ class JugadorController extends Controller
     
         return $pdf->download('jugadores_reporte.pdf');
     }
-   
+    
+    public function PDFnuevo()
+    {
+        $data =[
+            'msg' => $this->msg,
+        ];
+        /*$pdf = new Dompdf();*/
+        $pdf = PDF::loadView('pdf.jugador_nuevo', $data);
+        return $pdf->stream('Jugador_Nuevo.pdf');;
+    }
 }

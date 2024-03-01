@@ -37,8 +37,20 @@
                                     <td style="width: 70%;">{{ $jugador->nombres }}</td>
                                 </tr>
                                 <tr>
+                                    <th>Apellido Paterno</th>
+                                    <td>{{ $jugador->apellido_paterno }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Apellido Materno</th>
+                                    <td>{{ $jugador->apellido_materno }}</td>
+                                </tr>
+                                <tr>
                                     <th>Posición</th>
                                     <td>{{ $jugador->posicion }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Departamento</th>
+                                    <td>{{ $jugador->departamento }}</td>
                                 </tr>
                                 <tr>
                                     <th>Dorsal</th>
