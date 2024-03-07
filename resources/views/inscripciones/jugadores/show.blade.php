@@ -24,9 +24,9 @@
             <div class="col-lg 8">
                 <div class="card">
                     <div class="card-header d-flex align-items-center"">
-                    <img src="{{ asset($jugador->foto) }}" alt="{{ $jugador->nombres }} " width="50" height="50"
-                            style="border-radius: 20%; border: 2px solid rgb(177, 190, 188);" class="mr-2">
-                        <h3 style="text-transform: uppercase; margin-top: 10px;">{{ $jugador->nombres }}</h3>
+                    <img src="{{ asset($jugador->foto) }}" alt="{{ $jugador->nombres }} " width="90" height="90"
+                            style="border-radius: 50%; border: 2px solid rgb(177, 190, 188);" class="mr-2">
+                        <h3 style="text-transform: uppercase; margin-top: 10px;">{{ $jugador->nombres }} {{$jugador->apellido_paterno}} {{$jugador->apellido_materno}}</h3>
                     </div>
 
                     <div class="card-body">
