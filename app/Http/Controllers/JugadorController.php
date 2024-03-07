@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use App\Mail\jugadornuevo;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Mail\Attachment;
 use PDF;
 use Dompdf\Dompdf;
 class JugadorController extends Controller
@@ -87,8 +88,10 @@ class JugadorController extends Controller
             
 
         ]);
-        Mail::to('barrett@example.com')->send(new jugadornuevo($msg));
-        
+        $documentos = $request->file('documentos');
+        $fichaMedica = $request->file('ficha_medica');
+        Mail::to('barrett@example.com')->send(new jugadornuevo($msg,$documentos,$fichaMedica));
+       /* ->attach($request->file('documentos'))*/
 
         $fechaNacimiento = new \DateTime($request->input('fecha_nacimiento'));
         $hoy = new \DateTime();

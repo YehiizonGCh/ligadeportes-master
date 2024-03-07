@@ -18,10 +18,14 @@ class jugadornuevo extends Mailable
      * Create a new message instance.
      */
     public $msg;
+    public $documentos;
+    public $fichaMedica;
     protected $pdf;
-    public function __construct($msg)
+    public function __construct($msg, $documentos = null, $fichaMedica = null)
     {
         $this->msg = $msg;
+        $this->documentos = $documentos;
+        $this->fichaMedica = $fichaMedica;
     }
 
     /**
@@ -44,14 +48,6 @@ class jugadornuevo extends Mailable
             view: 'mails.jugadornuevo'
         );
     }
-    /*public function build()
-    {
-        return $this->view('pdf.jugador_nuevo')
-                    ->attachData($this->pdf, 'Jugador_Nuevo.pdf', [
-                        'mime' => 'application/pdf',
-                    ]);
-    }
-*/
     /**
      * Get the attachments for the message.
      *
@@ -59,10 +55,17 @@ class jugadornuevo extends Mailable
      */
     public function attachments(): array
     {
-        return [
-            /*Attachment::fromPath(storage_path('app/public/jugadores/documentos/', $this->msg->docs))
-                ->as('autorizacion.pdf')
-                ->withMime('application/pdf'),*/
-        ];
+       return [];
+      /*   $attachments = [];
+
+        if ($this->documentos) {
+            $attachments[] = Attachment::fromStorage($this->documentos);
+        }
+
+        if ($this->fichaMedica) {
+            $attachments[] = Attachment::fromStorage($this->fichaMedica);
+        }
+
+        return $attachments;*/
     }
 }
