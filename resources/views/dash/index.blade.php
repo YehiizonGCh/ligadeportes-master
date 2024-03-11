@@ -42,7 +42,7 @@
                             <div class="icon">
                                 <i class="fas fa-user-plus"></i>
                             </div>
-                            <a href="/usuarios" class="small-box-footer">
+                            <a href="{{ route('usuarios.index') }}" class="small-box-footer">
                                 Acceder <i class="fas fa-arrow-circle-right"></i>
                             </a>
                         </div>
@@ -61,7 +61,7 @@
                             <div class="icon">
                                 <i class="fas fa-futbol"></i>
                             </div>
-                            <a href="/equipos" class="small-box-footer">
+                            <a href="{{ route('equipos.index') }}" class="small-box-footer">
                                 Acceder <i class="fas fa-arrow-circle-right"></i>
                             </a>
                         </div>
@@ -80,7 +80,7 @@
                             <div class="icon">
                                 <i class="fas fa-users"></i>
                             </div>
-                            <a href="/partidos" class="small-box-footer">
+                            <a href="{{ route('partidos.index') }}" class="small-box-footer">
                                 Acceder <i class="fas fa-arrow-circle-right"></i>
                             </a>
                         </div>
@@ -96,7 +96,7 @@
                             <div class="icon">
                                 <i class="fas fa-sitemap"></i>
                             </div>
-                            <a href="#" class="small-box-footer">
+                            <a href="{{ route('resultados.index') }}" class="small-box-footer">
                                 Acceder <i class="fas fa-arrow-circle-right"></i>
                             </a>
                         </div>

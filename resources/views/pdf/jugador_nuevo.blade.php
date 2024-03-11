@@ -36,6 +36,8 @@
 <body>
     <div class="container">
         <h2 class="text-center mb-4">Informe de Jugador Inscrito</h2>
+        Foto
+        {{ $msg['foto'] }}
         <table class="table">
             <tr>
                 <th>Nombre jugador</th>

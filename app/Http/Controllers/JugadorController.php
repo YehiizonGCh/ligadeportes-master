@@ -15,7 +15,6 @@ use PDF;
 use Dompdf\Dompdf;
 class JugadorController extends Controller
 {
-    public $msg;
     function __construct()
     {
         $this->middleware('permission:ver-jugador|crear-jugador|editar-jugador|borrar-jugador')->only('index');
@@ -97,6 +96,7 @@ class JugadorController extends Controller
         $hoy = new \DateTime();
         $edad = $hoy->diff($fechaNacimiento)->y;
         $jugador = new Jugador();
+        $this->PDFnuevo($msg);
       
         // archivos documentos
             if ($request->hasFile('documentos')) {
@@ -156,7 +156,6 @@ class JugadorController extends Controller
         $jugador->save();
     
         return redirect()->route('jugadores.index')->with('create', 'El jugador se creó con éxito');
-        $this->PDFnuevo($msg);
     }
     
     
@@ -351,11 +350,12 @@ class JugadorController extends Controller
     
     public function PDFnuevo()
     {
+        $msg = Jugador::latest()->first();
         $data =[
-            'msg' => $this->msg,
+            'msg' => $msg,
         ];
         /*$pdf = new Dompdf();*/
         $pdf = PDF::loadView('pdf.jugador_nuevo', $data);
-        return $pdf->stream('Jugador_Nuevo.pdf');;
+        return $pdf->download('Jugador_Nuevo.pdf');
     }
 }
