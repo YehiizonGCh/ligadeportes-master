@@ -96,7 +96,6 @@ class JugadorController extends Controller
         $hoy = new \DateTime();
         $edad = $hoy->diff($fechaNacimiento)->y;
         $jugador = new Jugador();
-        $this->PDFnuevo($msg);
       
         // archivos documentos
             if ($request->hasFile('documentos')) {

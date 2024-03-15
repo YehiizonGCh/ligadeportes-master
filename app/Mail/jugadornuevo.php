@@ -56,7 +56,10 @@ class jugadornuevo extends Mailable
     public function attachments(): array
     {
        return [];
-      /*   $attachments = [];
+        /* $attachments = [
+            'documentos'=>$documentos,
+            'fichamedica'=>$fichaMedica,
+            ];
 
         if ($this->documentos) {
             $attachments[] = Attachment::fromStorage($this->documentos);
